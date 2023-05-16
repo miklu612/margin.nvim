@@ -2,10 +2,12 @@ local Margin = {
     text_width = 80
 }
 
+-- Enables the margin
 function Margin.Enable()
     vim.api.nvim_win_set_option(0, "colorcolumn", tostring(Margin.text_width))
 end
 
+-- Disables the margin
 function Margin.Disable()
     vim.api.nvim_win_set_option(0, "colorcolumn", "0")
 end
@@ -13,19 +15,21 @@ end
 -- Checks if the line is long enough to warrant the margin to be enabled
 function Margin.EnableIfRequired(line)
     if #line > Margin.text_width then
-        print("enabled")
         Margin.Enable()
     else
         Margin.Disable()
     end
 end
 
+-- Gets the current line, and runs `Margin.EnableIfRequired` which checks should
+-- the margin be enabled
 function Margin.CheckCurrentLine() 
     local cursor_pos = vim.api.nvim_win_get_cursor(0)
     local row_nr = cursor_pos[1]
     local row = vim.api.nvim_buf_get_lines(0, row_nr-1, row_nr, true)[1]
     Margin.EnableIfRequired(row)
 end
+
 
 function Margin.setup(options)
 
