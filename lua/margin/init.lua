@@ -1,4 +1,7 @@
 local Margin = {
+
+    -- At what column should the margin be activated. This is inclusive, so the 
+    -- actual limit is text_width+1
     text_width = 80,
 
     -- Should we check every line, or only the current line
