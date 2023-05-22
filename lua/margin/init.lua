@@ -52,7 +52,7 @@ function Margin.CheckGlobalMargin()
         if #line > Margin.text_width then
             Margin.Enable()
             if Margin.enable_highlight then
-                Highlight.Set(index, Margin.text_width)
+                Highlight.Set(index)
             end
         end
     end

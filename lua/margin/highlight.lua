@@ -3,8 +3,8 @@ local Highlight = {
     ns_id = vim.api.nvim_create_namespace("margin.nvim.highlight"),
 }
 
+-- Enables the highlighting for the given row number
 function Highlight.Set(row)
-    print(col)
     local id = vim.api.nvim_buf_set_extmark(0, Highlight.ns_id, row-1, 0, {
         hl_group = "MarginLineTooLong",
         hl_eol = true,
@@ -13,6 +13,7 @@ function Highlight.Set(row)
 end
 
 
+-- Clears all of the highlighting that is currently in use
 function Highlight.Clear()
     vim.api.nvim_buf_clear_namespace(
         0, 
@@ -22,6 +23,8 @@ function Highlight.Clear()
     )
 end
 
+-- Just creates the highlighting group that is used to underline the offending 
+-- lines
 function Highlight.Init()
     vim.api.nvim_set_hl(
         0,
