@@ -1,3 +1,6 @@
+
+local Highlight = require("margin.highlight")
+
 local Margin = {
 
     -- At what column should the margin be activated. This is inclusive, so the 
@@ -7,7 +10,13 @@ local Margin = {
     -- Should we check every line, or only the current line
     -- true : check every
     -- false : check only the current
-    global_margin = false
+    global_margin = false,
+
+    -- Should the rule breaking line be highlighted, or not. Note: This
+    -- current only works with the global margin
+    -- true : highlight the lines that are over the text_width
+    -- false : Don't highlight the lines that are over the text_width
+    enable_highligh = false
 }
 
 -- Enables the margin
@@ -35,10 +44,16 @@ function Margin.CheckGlobalMargin()
 
     Margin.Disable()
 
+    if Margin.enable_highlight then
+        Highlight.Clear()
+    end
+
     for index, line in pairs(lines) do
         if #line > Margin.text_width then
             Margin.Enable()
-            break
+            if Margin.enable_highlight then
+                Highlight.Set(index, Margin.text_width)
+            end
         end
     end
 
@@ -65,6 +80,10 @@ function Margin.setup(options)
         Margin.global_margin = options.global_margin
     end
 
+    if options.enable_highlight ~= nil then
+        Margin.enable_highlight = options.enable_highlight
+    end
+
     vim.api.nvim_create_autocmd(
         {"TextChangedI", "TextChanged"},
         {
@@ -77,6 +96,9 @@ function Margin.setup(options)
             end
         }
     )
+
+    Highlight.Init()
+
 end
 
 
