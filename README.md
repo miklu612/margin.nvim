@@ -17,5 +17,8 @@ require("margin").setup({
 
     -- Should the plugin check every line or only the current line
     global_margin = true, 
+
+    -- Should the highlighted line be underlined if it is over the text_width
+    enable_highlight = false,
 })
 ```
