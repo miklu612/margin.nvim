@@ -16,7 +16,7 @@ local Margin = {
     -- current only works with the global margin
     -- true : highlight the lines that are over the text_width
     -- false : Don't highlight the lines that are over the text_width
-    enable_highligh = false
+    enable_highlight = false
 }
 
 -- Enables the margin
@@ -51,8 +51,13 @@ function Margin.CheckGlobalMargin()
     for index, line in pairs(lines) do
         if #line > Margin.text_width then
             Margin.Enable()
+
             if Margin.enable_highlight then
                 Highlight.Set(index)
+            else 
+                -- If the margin highlighting is not enabled we don't have to 
+                -- check more lines.
+                break
             end
         end
     end
