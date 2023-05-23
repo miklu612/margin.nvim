@@ -23,7 +23,6 @@ local Margin = {
     highlight_definition = {
         underline = true,
         sp = "#FF0000",
-        blend = 100,
     }
 
 }

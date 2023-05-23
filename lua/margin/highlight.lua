@@ -29,11 +29,6 @@ function Highlight.Init(hl_definition)
     vim.api.nvim_set_hl(
         0,
         "MarginLineTooLong",
-        --{
-        --    underline = true,
-        --    sp = "#FF0000",
-        --    blend = 100,
-        --}
         hl_definition
     )
 end
