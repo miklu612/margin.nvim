@@ -16,7 +16,16 @@ local Margin = {
     -- current only works with the global margin
     -- true : highlight the lines that are over the text_width
     -- false : Don't highlight the lines that are over the text_width
-    enable_highlight = false
+    enable_highlight = false,
+
+    -- How should the highlight look. See :h nvim_set_hl() for a guide on how 
+    -- highlight stuff works.
+    highlight_definition = {
+        underline = true,
+        sp = "#FF0000",
+        blend = 100,
+    }
+
 }
 
 -- Enables the margin
@@ -89,6 +98,10 @@ function Margin.setup(options)
         Margin.enable_highlight = options.enable_highlight
     end
 
+    if options.highlight_definition ~= nil then
+        Margin.highlight_definition = options.highlight_definition
+    end
+
     vim.api.nvim_create_autocmd(
         {"TextChangedI", "TextChanged"},
         {
@@ -102,7 +115,7 @@ function Margin.setup(options)
         }
     )
 
-    Highlight.Init()
+    Highlight.Init(Margin.highlight_definition)
 
 end
 

@@ -25,15 +25,16 @@ end
 
 -- Just creates the highlighting group that is used to underline the offending 
 -- lines
-function Highlight.Init()
+function Highlight.Init(hl_definition)
     vim.api.nvim_set_hl(
         0,
         "MarginLineTooLong",
-        {
-            underline = true,
-            sp = "#FF0000",
-            blend = 100,
-        }
+        --{
+        --    underline = true,
+        --    sp = "#FF0000",
+        --    blend = 100,
+        --}
+        hl_definition
     )
 end
 
