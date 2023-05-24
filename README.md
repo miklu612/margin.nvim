@@ -21,5 +21,12 @@ require("margin").setup({
 
     -- Should the highlighted line be underlined if it is over the text_width
     enable_highlight = false,
+
+    -- Override the default highlight group that is used on the lines that are 
+    -- breaking the margin rule.
+    highlight_definition = {
+        underline = true,
+        sp = "#FF0000",
+    }
 })
 ```
