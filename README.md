@@ -19,7 +19,8 @@ require("margin").setup({
     -- Should the plugin check every line or only the current line
     global_margin = true, 
 
-    -- Should the highlighted line be underlined if it is over the text_width
+    -- Should the line that is crossing the margin be highlighted with the 
+    -- `highlight_definition` highlight
     enable_highlight = false,
 
     -- Override the default highlight group that is used on the lines that are 
