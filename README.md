@@ -1,7 +1,8 @@
 # margin.nvim
 
 Margin.nvim is a simple nvim extension that lights up the colorcolumn if the 
-current line is getting too long. 
+current line is getting too long, and optionally shows a custom highlight group 
+on the offending line.
 
 
 ## Setup
